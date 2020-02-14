@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import Adafruit_BBIO.GPIO as GPIO
 from time import sleep
 from random import randint
