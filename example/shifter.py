@@ -4,11 +4,27 @@ import Adafruit_BBIO.GPIO as GPIO
 from time import sleep
 from random import randint
 
-# SER   = Data
-# RCLK  = Latch
-# SRCLK = Clock
-# SRCLR = Clear keep high
-# OE    = Blank keep low
+# this example uses a single shift register with normal 2-pin LED's
+
+'''
+SER   = Data
+RCLK  = Latch
+SRCLK = Clock
+SRCLR = Clear (keep high)
+OE    = Blank (keep low)
+
+       74HC595
+       -------
+ QB --|1    16|-- VCC
+ QC --|2    15|-- QA
+ QD --|3    14|-- SER
+ QE --|4    13|-- OE
+ QF --|5    12|-- RCLK
+ QG --|6    11|-- SRCLK
+ QH --|7    10|-- SRCLR
+GND --|8     9|-- QH'           <--- DATA OUT to SER on next IC to daisy chain them
+       -------
+'''
 
 data_pin  = "P9_23"
 latch_pin = "P9_25"
@@ -34,5 +50,4 @@ while True:
         GPIO.output(clock_pin, GPIO.LOW)
     GPIO.output(latch_pin, GPIO.HIGH)
     GPIO.output(latch_pin, GPIO.LOW)
-    print new_data
     delay(400)

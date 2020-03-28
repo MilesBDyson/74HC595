@@ -3,6 +3,25 @@ import Adafruit_BBIO.GPIO as GPIO
 class ShiftRegister:
     register_type = '74HC595'
 
+'''
+SER   = Data
+RCLK  = Latch
+SRCLK = Clock
+SRCLR = Clear (keep high)
+OE    = Blank (keep low)
+
+       74HC595
+       -------
+ QB --|1    16|-- VCC
+ QC --|2    15|-- QA
+ QD --|3    14|-- SER
+ QE --|4    13|-- OE
+ QF --|5    12|-- RCLK
+ QG --|6    11|-- SRCLK
+ QH --|7    10|-- SRCLR
+GND --|8     9|-- QH'           <--- DATA OUT to SER on next IC to daisy chain them
+       -------
+'''
     def __init__(self, data_pin, latch_pin, clock_pin):
         self.data_pin = data_pin
         self.latch_pin = latch_pin

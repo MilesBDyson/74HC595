@@ -2,11 +2,27 @@ import Adafruit_BBIO.GPIO as GPIO
 from shiftr_74HC595 import ShiftRegister
 from time import sleep
 
-# SER   = Data
-# RCLK  = Latch
-# SRCLK = Clock
-# SRCLR = Clear keep high
-# OE    = Blank keep low
+# Basic example using the shiftr_74HC595 library
+
+'''
+SER   = Data
+RCLK  = Latch
+SRCLK = Clock
+SRCLR = Clear (keep high)
+OE    = Blank (keep low)
+
+       74HC595
+       -------
+ QB --|1    16|-- VCC
+ QC --|2    15|-- QA
+ QD --|3    14|-- SER
+ QE --|4    13|-- OE
+ QF --|5    12|-- RCLK
+ QG --|6    11|-- SRCLK
+ QH --|7    10|-- SRCLR
+GND --|6     9|-- QH'           <--- DATA OUT to SER on next IC to daisy chain them
+       -------
+'''
 
 data_pin  = "P9_23" #pin 14 on the 75HC595
 latch_pin = "P9_25" #pin 12 on the 75HC595
